@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rudi Ullon - Test</title>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script>
+	function processForm()
+	{	
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+		  if (this.status == 200) {
+			document.getElementById("result").innerHTML = " Word "+this.responseText +" is palindrome";
+		  }else if(this.status == 400){
+			document.getElementById("result").innerHTML = " Word "+this.responseText +" is NOT palindrome";
+		  }else{
+			document.getElementById("result").innerHTML = " Something happened";
+		  }
+		};
+		xhttp.open("POST", "/process_post", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("word="+document.getElementById("word").value);
+	}
+
+</script>
+</head>
+<body>
+<div class="container">
+	<div>
+	<nav class="navbar navbar-inverse" role="navigation" style="padding-left:130px;">
+		   <ul class="nav navbar-nav">
+		  <li class="active"><a href="/">Test Page<span class="sr-only">(current)</span></a></li>
+		  
+		</ul>
+	</nav>
+	</div>
+
+	<div class="jumbotron"> 
+		<img src="https://shawandpartners.com/wp-content/uploads/2017/02/LOGO_FINAL_SP.png" width="500">
+	</div>
+
+
+	<div class="row">
+		<div class="row-lg-4">&nbsp;</div>
+		<div class="row-lg-4 text-center">	
+			<form id="wordForm">
+				Enter Word: <input type = "text" id="word" name = "word">       
+				 <input type = "button" value = "Validate" onclick="processForm();">
+			</form>
+		</div>
+		<div class="row-lg-4">&nbsp;</div>
+	</div>
+	
+	<div class="row  text-center">
+	<div class="row-lg-4">&nbsp;</div>
+		<div class="row-lg-4">
+			<div id="result"></div>
+		</div>
+		<div class="row-lg-4">&nbsp;</div>
+	</div>
+	
+	
+</div>
+
+</body>
+</html>
+
+
